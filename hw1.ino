@@ -48,7 +48,7 @@ bool currentButtonState = false;
 bool prevButtonState = false;
 int currentLED = 0;
 int counter =0;
-const int MAX_TICKS=400;
+const int MAX_TICKS=200;
 void playMelody(){
   
   for (int i=0;i<LEN(melodyDur);++i){
@@ -92,7 +92,12 @@ void loop()
     
     break;
     case RUNNING:
-    	if(buttonPressed) {currentState=INACTIVE;break;}
+    	if(buttonPressed) {
+          currentState=INACTIVE;
+          clearAll();
+          counter=0;
+          break;
+        }
     	if(counter==MAX_TICKS)
         {
           currentState=ALARM;
