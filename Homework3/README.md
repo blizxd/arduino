@@ -34,9 +34,6 @@ directly through the IO registers instead of `pinMode`/`digitalWrite`/
 + 1-4 - Open counter (unsigned long)
 
 ## Serial commands
-
-Baud rate 9600. Commands end with a newline.
-
 + `count` - show how many times the barrier has been opened
 + `reset` - reset the counter to 0
 + `dist` - show the current distance
