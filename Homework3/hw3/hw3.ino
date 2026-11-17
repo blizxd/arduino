@@ -9,7 +9,6 @@ LiquidCrystal lcd{2, 3, 4, 5, 6, 7};
 const int SERVO_PIN = 9;
 const int TRIG_PIN  = 10;
 const int ECHO_PIN  = 8;
-
 const int THRESHOLD    = 8;   
 const int CLOSED_ANGLE = 0;
 const int OPEN_ANGLE   = 90;
@@ -50,7 +49,7 @@ int myDigitalReadPORTB(int pin){
 
 void setup() {
   Serial.begin(9600);
-
+  Serial.println("Setup() called");
   myPinModePORTB(ECHO_PIN, INPUT);
   myPinModePORTB(TRIG_PIN, OUTPUT);
 
@@ -67,6 +66,12 @@ void setup() {
 
   lcd.begin(16, 2);
 
+  Serial.print("Address B: ");
+  Serial.println((int)&PORTB);
+  Serial.print("Address C: ");
+  Serial.println((int)&PORTC);
+  Serial.print("Address D: ");
+  Serial.println((int)&PORTD);
   delay(1000);
 }
 
@@ -87,7 +92,7 @@ void openBarrier() {
   Serial.println("Barrier opening");
   for (int angle = CLOSED_ANGLE; angle <= OPEN_ANGLE; angle++) {
     myServo.write(angle);
-    delay(20);
+    delay(5);
   }
   isClosed = false;
 
@@ -99,7 +104,7 @@ void closeBarrier() {
   Serial.println("Barrier closing");
   for (int angle = OPEN_ANGLE; angle >= CLOSED_ANGLE; angle--) {
     myServo.write(angle);
-    delay(20);
+    delay(5);
   }
   isClosed = true;
 }
